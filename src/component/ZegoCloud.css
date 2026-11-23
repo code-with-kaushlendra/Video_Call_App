@@ -1,0 +1,347 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap');
+
+.zc {
+  --ground: #eef0f3;
+  --surface: #f9fafb;
+  --ink: #14171f;
+  --muted: #5b6270;
+  --line: #d9dde3;
+  --accent: #2b59ff;
+  --accent-ink: #1d3fc4;
+  --live: #1fa66a;
+  --end: #d64545;
+
+  min-height: 100vh;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  line-height: 1.55;
+  padding: 0 clamp(20px, 5vw, 72px);
+  box-sizing: border-box;
+}
+
+.zc *,
+.zc *::before,
+.zc *::after {
+  box-sizing: border-box;
+}
+
+/* nav */
+.zc-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 0;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.zc-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+
+.zc-logo-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(43, 89, 255, 0.16);
+}
+
+.zc-nav-note {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* hero */
+.zc-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(32px, 6vw, 88px);
+  align-items: center;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: clamp(32px, 7vw, 88px) 0 clamp(48px, 8vw, 104px);
+}
+
+.zc-copy h1 {
+  font-size: clamp(36px, 5.2vw, 60px);
+  line-height: 1.04;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  margin: 0 0 20px;
+  max-width: 11ch;
+}
+
+.zc-lead {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 40ch;
+  margin: 0 0 36px;
+}
+
+.zc-form {
+  display: flex;
+  gap: 8px;
+  max-width: 440px;
+  padding: 6px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.zc-form:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(43, 89, 255, 0.15);
+}
+
+.zc-form input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 16px;
+  color: var(--ink);
+  padding: 0 12px;
+  outline: none;
+}
+
+.zc-form input::placeholder {
+  color: #8b93a1;
+}
+
+.zc-form button {
+  font: inherit;
+  font-weight: 500;
+  font-size: 15px;
+  color: #fff;
+  background: var(--accent);
+  border: 0;
+  border-radius: 9px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.zc-form button:hover:not(:disabled) {
+  background: var(--accent-ink);
+}
+
+.zc-form button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.zc-form button:focus-visible,
+.zc-link:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.zc-hint {
+  margin: 14px 0 0 4px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.zc-link {
+  font: inherit;
+  color: var(--accent-ink);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* call preview */
+.zc-window {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: 0 30px 60px -30px rgba(20, 23, 31, 0.28);
+}
+
+.zc-window-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 6px 14px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.zc-live {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--live);
+  animation: zc-pulse 2.4s ease-in-out infinite;
+}
+
+.zc-room-name {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.zc-count {
+  margin-left: auto;
+}
+
+.zc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.zc-tile {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  outline: 2px solid transparent;
+  outline-offset: -2px;
+}
+
+.zc-tile.tone-a { background: #c9d4e8; }
+.zc-tile.tone-b { background: #d5e0d2; }
+.zc-tile.tone-c { background: #e4d8cf; }
+.zc-tile.tone-d { background: #d3cfe3; }
+
+.zc-tile.speaking {
+  outline-color: var(--accent);
+}
+
+.zc-avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.65);
+  font-weight: 600;
+  font-size: 17px;
+  color: #3a4152;
+}
+
+.zc-name {
+  position: absolute;
+  left: 10px;
+  bottom: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #2a3040;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.zc-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 0 4px;
+}
+
+.zc-ctrl {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--ground);
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.zc-ctrl.end {
+  background: var(--end);
+  border-color: var(--end);
+  color: #fff;
+}
+
+/* features */
+.zc-features {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 56px 0 72px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 2fr);
+  gap: 32px;
+}
+
+.zc-features h2 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.zc-features dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px 48px;
+}
+
+.zc-feature dt {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.zc-feature dd {
+  margin: 0;
+  color: var(--muted);
+  max-width: 38ch;
+}
+
+/* footer */
+.zc-footer {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 24px 0 36px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+@keyframes zc-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(31, 166, 106, 0.45); }
+  50% { box-shadow: 0 0 0 6px rgba(31, 166, 106, 0); }
+}
+
+@media (max-width: 860px) {
+  .zc-hero {
+    grid-template-columns: 1fr;
+  }
+  .zc-features {
+    grid-template-columns: 1fr;
+  }
+  .zc-features dl {
+    grid-template-columns: 1fr;
+  }
+  .zc-nav-note {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zc-live {
+    animation: none;
+  }
+}
